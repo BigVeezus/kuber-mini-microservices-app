@@ -5,9 +5,7 @@ const { randomBytes } = require("crypto");
 
 app.use(bodyParser.json());
 
-const posts = {
-  elvis: "hey",
-};
+const posts = {};
 
 app.get("/posts", (req, res) => {
   res.send(posts);
@@ -24,5 +22,5 @@ app.post("/posts", (req, res) => {
 });
 
 app.listen(4000, () => {
-  console.log("Listening on port 4000 my ski");
+  console.log(" Posts Listening on port 4000 my ski");
 });
