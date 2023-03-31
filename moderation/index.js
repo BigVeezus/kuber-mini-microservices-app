@@ -6,8 +6,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.post("/events", async (req, res) => {
-  const { type, data } = req.body;
+const CommentCreated = async (type, data) => {
   if (type === "CommentCreated") {
     const status = data.content.includes("orange") ? "rejected" : "approved";
 
@@ -21,10 +20,22 @@ app.post("/events", async (req, res) => {
       },
     });
   }
+};
+
+app.post("/events", async (req, res) => {
+  const { type, data } = req.body;
+
+  CommentCreated(type, data);
 
   res.send({});
 });
 
-app.listen(8000, () => {
+app.listen(8000, async () => {
   console.log("Moderation on PORT 8000 bro");
+  const res = await axios.get("http://localhost:2000/events");
+
+  for (let event of res.data) {
+    // console.log("Moderating events");
+    CommentCreated(event.type, event.data);
+  }
 });
