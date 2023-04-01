@@ -38,5 +38,6 @@ app.post("/events", (req, res) => {
 });
 
 app.listen(4000, () => {
+  console.log("update to be pushed to docker v55");
   console.log(" Posts Listening on port 4000 my ski");
 });
