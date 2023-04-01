@@ -51,7 +51,7 @@ app.post("/events", (req, res) => {
 app.listen(7000, async () => {
   console.log("Query listening on 7000");
 
-  const res = await axios.get("http://localhost:2000/events");
+  const res = await axios.get("http://event-bus-srv:2000/events");
 
   for (let event of res.data) {
     console.log("Processing events");

@@ -10,7 +10,7 @@ const CommentCreated = async (type, data) => {
   if (type === "CommentCreated") {
     const status = data.content.includes("orange") ? "rejected" : "approved";
 
-    await axios.post("http://localhost:2000/events", {
+    await axios.post("http://event-bus-srv:2000/events", {
       type: "CommentModerated",
       data: {
         id: data.id,
@@ -32,7 +32,7 @@ app.post("/events", async (req, res) => {
 
 app.listen(8000, async () => {
   console.log("Moderation on PORT 8000 bro");
-  const res = await axios.get("http://localhost:2000/events");
+  const res = await axios.get("http://event-bus-srv:2000/events");
 
   for (let event of res.data) {
     // console.log("Moderating events");

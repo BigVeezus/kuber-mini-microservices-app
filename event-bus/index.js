@@ -13,17 +13,17 @@ app.post("/events", (req, res) => {
 
   eventBusData.push(event);
 
-  axios.post("http://localhost:4000/events", event).catch((err) => {
+  axios.post("http://posts-clusterip-srv:4000/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:5000/events", event).catch((err) => {
+  axios.post("http://comments-srv:5000/events", event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:7000/events", event).catch((err) => {
+  axios.post("http://query-srv:7000/events", event).catch((err) => {
     console.log(err.message);
   });
 
-  axios.post("http://localhost:8000/events", event).catch((err) => {
+  axios.post("http://moderation-srv:8000/events", event).catch((err) => {
     console.log(err.message);
   });
 
